@@ -1,5 +1,10 @@
 const mongoose = require("mongoose");
 
+const options = {
+    strict: "throw",
+    strictQuery: false
+  };
+
 const productSchema = new mongoose.Schema({
     name: {
         type: String,
