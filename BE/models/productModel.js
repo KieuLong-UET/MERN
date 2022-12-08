@@ -43,7 +43,8 @@ const productSchema = new mongoose.Schema({
     stock: {
         type: Number,
         required: [true, "Nhap danh muc san pham"],
-        maxLength: [4, "So luong han khong qua 4 ky tu"]
+        maxLength: [4, "So luong han khong qua 4 ky tu"],
+        default: 1
     },
     numOfReviews: {
         type: Number,
