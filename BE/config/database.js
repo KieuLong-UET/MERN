@@ -9,9 +9,6 @@ const connectDatabase = () => {
     })
     .then((data) => {
       console.log(`ket noi db voi server: ${data.connection.host}`);
-    })
-    .catch((err) => {
-      console.log(err);
     });
 };
 
