@@ -1,5 +1,5 @@
 const Product = require("../models/productModel");
-const ErrorHander = require("../utils/errorhander");
+const ErrorHandler = require("../utils/errorhandler");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors")
 const ApiFeatures = require("../utils/apifeatures")
 
@@ -48,7 +48,7 @@ exports.getProductDetails = catchAsyncErrors(
         const product = await Product.findById(req.params.id);
         
         if(!product) {
-            return next(new ErrorHander("Product not found", 404));
+            return next(new ErrorHandler("Product not found", 404));
         }
     
         if(product) {
