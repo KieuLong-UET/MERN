@@ -3,6 +3,7 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const ApiFeatures = require("../utils/apifeatures");
 const User = require("../models/userModel");
 const { Schema } = require("mongoose");
+const sendToken = require("../utils/jwtToken");
 
 //Register a User
 
@@ -18,12 +19,7 @@ exports.registerUser = catchAsyncErrors (
             }
         });
 
-        const token = user.getJWTToken();
-
-        res.status(201).json({
-            success: true,
-            token
-        });
+        sendToken(user, 201, res);
     }
 );
 
@@ -51,10 +47,29 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
         return next(new ErrorHandler("Invalid email or password", 401));
     }
 
-    const token = user.getJWTToken();
+    // const token = user.getJWTToken();
+
+    // res.status(201).json({
+    //     success: true,
+    //     token
+    // });
+
+    sendToken(user, 200, res);
+})
+
+
+//Logout user
+
+exports.logout = catchAsyncErrors(async (req, res, next) => {
+    
+    req.cookie("token", null, {
+        expires: new Date(Date.now()),
+        httpOnly: true
+    });
 
     res.status(201).json({
         success: true,
-        token
+        message: "Log out"
     });
+
 })
