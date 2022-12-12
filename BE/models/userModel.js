@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const validator = require("validator")
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken")
+const crypto = require("crypto")
 
 const options = {
     strict: "throw",
@@ -67,6 +68,17 @@ userSchema.methods.getJWTToken = function () {
 //Check password login
 userSchema.methods.comparePassword = async function (enterPassword) {
     return await bcrypt.compare(enterPassword, this.password);
-}
+};
+
+//Generating Password reset token
+
+userSchema.methods.getResetPasswordToken = function () {
+
+    //Generating token
+    const resetToken = crypto.randomBytes(20).toString("hex");
+    
+
+};
+
 
 module.exports = mongoose.model("User", userSchema);
