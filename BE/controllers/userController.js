@@ -4,6 +4,7 @@ const ApiFeatures = require("../utils/apifeatures");
 const User = require("../models/userModel");
 const { Schema } = require("mongoose");
 const sendToken = require("../utils/jwtToken");
+const sendEmail = require("../utils/sendEmail.js")
 
 //Register a User
 
@@ -71,5 +72,47 @@ exports.logout = catchAsyncErrors(async (req, res, next) => {
         success: true,
         message: "Dang xuat"
     });
+
+})
+
+//Forgot password
+
+exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
+
+    const user = await user.findOne({email: req.body.email});
+
+    if(!user) {
+        return next(new ErrorHandler("User not found", 404));
+    };
+
+    //Get reset password token
+    const resetToken = user.getResetPasswordToken();
+
+    await user.save({validateBeforeSave: false});
+    
+    const resetPasswordUrl = `${req.protocol}://${req.get("host")}/api/v1/password/reset/${resetToken}`;
+    
+    const message = `Reset password token la: \n\n ${resetPasswordUrl} \n\nBo qua email nay neu khong yeu cau reset password`;
+    
+    try {
+        
+        await sendEmail({
+            email: user.email,
+            subject: `Lay lai mat khau`,
+            message
+        });
+
+        res.status(200).json({
+            success: true,
+            message: `Email da duoc gui toi ${user.mail}`
+        })
+
+    } catch (error) {
+        user.resetPasswordToken = undefined;
+        user.resetPasswordExpire = undefined;
+        await user.save({validateBeforeSave: false});
+
+        return next(new ErrorHandler(error.message, 500));
+    }
 
 })
