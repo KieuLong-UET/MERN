@@ -4,7 +4,8 @@ const ApiFeatures = require("../utils/apifeatures");
 const User = require("../models/userModel");
 const { Schema } = require("mongoose");
 const sendToken = require("../utils/jwtToken");
-const sendEmail = require("../utils/sendEmail.js")
+const sendEmail = require("../utils/sendEmail.js");
+const crypto = require("crypto");
 
 //Register a User
 
@@ -117,8 +118,21 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
 });
 
+
+//reset password
 exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 
-    const resetPasswordExpire = crypto.createHash("sha256").update(req.params.token).digest("hex");
+    //Create token hash
+    const resetPasswordToken = crypto.createHash("sha256").update(req.params.token).digest("hex");
+
+    const user = await User.findOne({
+        resetPasswordToken,
+        resetPasswordExpire: {$gt: Date.now()}
+    });
+
+    if(!user) {
+        return next(new ErrorHandler("User not found", 400));
+    };
+
 
 })
