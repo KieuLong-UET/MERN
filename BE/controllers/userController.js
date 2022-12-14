@@ -43,8 +43,8 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
         return next(new ErrorHandler("Invalid email or password", 401));
     }
 
-    const isPasswordMatched = user.comparePassword(password);
-
+    const isPasswordMatched = await user.comparePassword(password);
+    
     if(!isPasswordMatched) {
         return next(new ErrorHandler("Invalid email or password", 401));
     }
@@ -87,7 +87,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
     };
 
     //Get reset password token
-    const resetToken = await user.getResetPasswordToken();
+    const resetToken = user.getResetPasswordToken();
 
     await user.save({validateBeforeSave: false});
     
@@ -131,8 +131,18 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
     });
 
     if(!user) {
-        return next(new ErrorHandler("User not found", 400));
+        return next(new ErrorHandler("Reset password token has problem", 400));
     };
 
+    if(req.body.password !== req.body.confirmPassword){
+        return (new ErrorHandler("Kiem tra lai password va confirm password", 400));
+    };
 
+    user.password = req.body.password;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
+
+    await user.save();
+
+    sendToken(user, 200, res);
 })
