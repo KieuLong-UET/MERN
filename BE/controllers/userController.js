@@ -233,7 +233,7 @@ exports.getSingleUser = catchAsyncErrors(async (req, res, next) => {
 
 //update user --admin
 
-exports.updateUserRole = catchAsyncErrors(async (req, res, next) => {
+exports.updateUser = catchAsyncErrors(async (req, res, next) => {
     
     const newUserData = {
         name: req.body.name,
@@ -266,6 +266,7 @@ exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
     await user.remove();
     
     res.status(200).json({
-        success: true
+        success: true,
+        message: "Xoa user thanh cong"
     });
 });
