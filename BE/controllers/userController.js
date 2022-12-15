@@ -158,3 +158,74 @@ exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
         user
     })
 })
+
+//update user password
+
+exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
+    
+    if(req.body.newPassword !== req.body.confirmPassword) {
+        return next(new ErrorHandler("Password khong khop", 400));
+    }
+    
+    const user = await User.findById(req.user.id).select("+password");
+    
+    const isPasswordMatched = await user.comparePassword(req.body.oldPassword);
+    
+    if(!isPasswordMatched) {
+        return next(new ErrorHandler("Old password khong dung", 400));
+    }
+
+    user.password = req.body.newPassword;
+
+    await user.save();
+
+    sendToken(user, 200, res);
+})
+
+//update user password
+
+exports.updateUserDetail = catchAsyncErrors(async (req, res, next) => {
+    
+    const newUserData = {
+        name: req.body.name,
+        email: req.body.email
+    }
+
+    const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
+        new: true,
+        runValidators: true
+    });
+    
+    res.status(200).json({
+        success: true,
+        user
+    });
+});
+
+//Get all user (admin)
+
+exports.getAllUser = catchAsyncErrors(async (req, res, next) => {
+
+    const users = await User.find(req.params.id);
+
+    res.status(200).json({
+        success: true,
+        users
+    })
+})
+
+//Get single user (admin)
+
+exports.getSingleUser = catchAsyncErrors(async (req, res, next) => {
+
+    const user = await User.findById(req.params.id);
+
+    if(!user) {
+        return next(new ErrorHandler(`khong ton tai user: ${req.params.id}`, 401))
+    }
+
+    res.status(200).json({
+        success: true,
+        user
+    })
+})
