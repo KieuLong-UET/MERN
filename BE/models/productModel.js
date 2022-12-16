@@ -20,7 +20,7 @@ const productSchema = new mongoose.Schema({
         required: [true, "Nhap ten san pham"],
         maxLength: [8, "Gia san pham khong the vuot qua 8 ky tu"]
     },
-    rating: {
+    ratings: {
         type: Number,
         default: 0
     },
@@ -52,6 +52,11 @@ const productSchema = new mongoose.Schema({
     },
     reviews: [
         {
+            user: {
+                type: mongoose.Schema.ObjectId,
+                ref: "User",
+                required: true
+            },
             name: {
                 type: String,
                 required: true
@@ -76,5 +81,8 @@ const productSchema = new mongoose.Schema({
         default: Date.now
     }
 });
+
+
+
 
 module.exports = mongoose.model("Product", productSchema);
