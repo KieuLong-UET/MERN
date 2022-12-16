@@ -161,4 +161,57 @@ exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
         success: true,
         product
     })
+});
+
+//Get all review of a product
+
+exports.getProductReviews = catchAsyncErrors(async (req, res, next) => {
+    const product = await Product.findById(req.query.productId);
+
+    if (!product) {
+        return next(new ErrorHandler('khong tim thay san pham', 404));
+    }
+
+    res.status(200).json({
+        success: true,
+        reviews: product.reviews
+    });
+});
+
+
+//Delet review
+
+exports.deleteProductReview = catchAsyncErrors(async (req, res, next) => {
+    const product = await Product.findById(req.query.productId);
+
+    if (!product) {
+        return next(new ErrorHandler('khong tim thay san pham', 404));
+    }
+
+    const reviews = product.reviews.filter(rev => rev._id.toString() !== req.query.id.toString());
+
+    let avg = 0;
+    
+    reviews.forEach(rev => {
+        avg += rev.rating;
+    })
+
+    const ratings = avg / reviews.length;
+    
+    const numOfReviews = reviews.length;
+
+    await Product.findByIdAndUpdate(req.query.productId, {
+        reviews,
+        ratings,
+        numOfReviews
+    }, 
+    {
+        new: true,
+        runValidators: true,
+    });
+
+    res.status(200).json({
+        success: true,
+        product
+    });
 })
