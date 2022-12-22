@@ -188,6 +188,7 @@ exports.deleteProductReview = catchAsyncErrors(async (req, res, next) => {
         return next(new ErrorHandler('khong tim thay san pham', 404));
     }
 
+    //thieu xu ly xoa review khong ton tai
     const reviews = product.reviews.filter(rev => rev._id.toString() !== req.query.id.toString());
 
     let avg = 0;
