@@ -10,7 +10,7 @@ function App() {
   React.useEffect(() => {
     WebFont.load({
       google: {
-        families: ["Roboto", "Droid Sans", "Chilanka"],
+        families: ["Roboto", "Droid Sans"],
       },
     });
   }, []);
