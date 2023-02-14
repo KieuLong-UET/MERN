@@ -1,28 +1,40 @@
-import "./App.css";
-import Header from "./components/layout/Header/Header.js";
-import Footer from "./components/layout/Footer/Footer";
-import Home from "./components/Home/Home";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import WebFont from "webfontloader";
-import React from "react";
+import PropTypes from "prop-types";
+import React, { useEffect, Suspense, lazy } from "react";
+import ScrollToTop from "./helpers/scroll-top";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { ToastProvider } from "react-toast-notifications";
+import { multilanguage, loadLanguages } from "redux-multilanguage";
+import { connect } from "react-redux";
+import { BreadcrumbsProvider } from "react-breadcrumbs-dynamic";
 
-function App() {
-  React.useEffect(() => {
-    WebFont.load({
-      google: {
-        families: ["Roboto", "Droid Sans"],
-      },
-    });
-  }, []);
+//Home page
+const Home = lazy(() => import("./pages/home/Home"));
+
+//Shop page
+
+// Product page
+
+//Blog page
+
+//Other page
+function App(props) {
+  useEffect(() => {});
 
   return (
-    <Router>
-      <Header />
-
-      <Route extact path="/" component={Home} />
-      <Footer />
-    </Router>
+    <ToastProvider>
+      <BreadcrumbsProvider>
+        <Route>
+          <ScrollToTop>
+            <Home></Home>
+          </ScrollToTop>
+        </Route>
+      </BreadcrumbsProvider>
+    </ToastProvider>
   );
 }
 
-export default App;
+App.propTypes = {
+  dispatch: PropTypes.func,
+};
+
+export default connect()(App);
