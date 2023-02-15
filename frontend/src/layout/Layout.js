@@ -3,7 +3,7 @@ import React, { Fragment } from "react";
 import HeaderTwo from "../wrappers/header/HeaderTwo";
 import FooterOne from "../wrappers/footer/FooterOne";
 
-const LayoutTwo = ({ children, footerBackgroundClass }) => {
+const Layout = ({ children, footerBackgroundClass }) => {
   return (
     <Fragment>
       <HeaderTwo />
@@ -17,9 +17,9 @@ const LayoutTwo = ({ children, footerBackgroundClass }) => {
   );
 };
 
-LayoutTwo.propTypes = {
+Layout.propTypes = {
   children: PropTypes.any,
   footerBackgroundClass: PropTypes.string
 };
 
-export default LayoutTwo;
+export default Layout;

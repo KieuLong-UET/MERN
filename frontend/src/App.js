@@ -18,7 +18,15 @@ const Home = lazy(() => import("./pages/home/Home"));
 
 //Other page
 function App(props) {
-  useEffect(() => {});
+  useEffect(() => {
+    props.dispatch(
+      loadLanguages({
+        languages: {
+          vn: require("./translations/vietnamese.json")
+        }
+      })
+    );
+  });
 
   return (
     <ToastProvider>
@@ -37,4 +45,4 @@ App.propTypes = {
   dispatch: PropTypes.func,
 };
 
-export default connect()(App);
+export default connect()(multilanguage(App));
