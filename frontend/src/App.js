@@ -12,12 +12,12 @@ const Home = lazy(() => import("./pages/home/Home"));
 
 //Shop page
 
-// Product page
+//Product page
 
 //Blog page
 
 //Other page
-function App(props) {
+const App = (props) => {
   useEffect(() => {
     props.dispatch(
       loadLanguages({
@@ -33,7 +33,7 @@ function App(props) {
       <BreadcrumbsProvider>
         <Route>
           <ScrollToTop>
-            <Home></Home>
+            <Home/>
           </ScrollToTop>
         </Route>
       </BreadcrumbsProvider>

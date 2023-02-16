@@ -2,6 +2,24 @@ import React from "react";
 import Swiper from "react-id-swiper";
 import SliderSingle from "../../components/slider/SliderSingle";
 
+//Need to call api to get data here
+const dataSlider = [
+  {
+    id: 1,
+    title: "New Arrival",
+    subtitle: "New Design <br/> Bluetooth Speaker",
+    image: "/assets/img/slider/single-slide-3.png",
+    url: "/shop-grid-standard",
+  },
+  {
+    id: 2,
+    title: "Smart Products",
+    subtitle: "Summer Offer <br/> 2020 Collection",
+    image: "/assets/img/slider/single-slide-6.png",
+    url: "/shop-grid-standard",
+  },
+];
+
 const Slider = () => {
   const params = {
     effect: "fade",
@@ -27,24 +45,6 @@ const Slider = () => {
       </button>
     ),
   };
-
-  //Need to call api to get data here
-  const dataSlider = [
-    {
-      id: 1,
-      title: "New Arrival",
-      subtitle: "New Design <br/> Bluetooth Speaker",
-      image: "/assets/img/slider/single-slide-3.png",
-      url: "/shop-grid-standard",
-    },
-    {
-      id: 2,
-      title: "Smart Products",
-      subtitle: "Summer Offer <br/> 2020 Collection",
-      image: "/assets/img/slider/single-slide-6.png",
-      url: "/shop-grid-standard",
-    },
-  ];
 
   return (
     <div className="slider-area">
