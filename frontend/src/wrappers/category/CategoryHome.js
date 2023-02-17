@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import Swiper from "react-id-swiper";
-import CategoryOneSingle from "../../components/category/CategoryOneSingle.js";
+import CategorySingle from "../../components/category/CategorySingle.js";
 
 //Call data
 const categoryData = [
@@ -39,7 +39,7 @@ const CategoryHome = ({ spaceBottomClass }) => {
   // swiper slider settings
   const settings = {
     loop: false,
-    spaceBetween: 30,
+    spaceBetween: 35,
     breakpoints: {
       992: {
         slidesPerView: 3,
@@ -61,10 +61,10 @@ const CategoryHome = ({ spaceBottomClass }) => {
           <div className="collection-active-2">
             <Swiper {...settings}>
               {categoryData &&
-                categoryData.map((single, key) => {
+                categoryData.map((item, key) => {
                   return (
-                    <CategoryOneSingle
-                      data={single}
+                    <CategorySingle
+                      data={item}
                       key={key}
                       sliderClass="swiper-slide"
                     />
