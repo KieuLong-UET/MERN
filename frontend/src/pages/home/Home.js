@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import MetaTags from "react-meta-tags";
 import Layout from "../../layout/Layout";
 import Slider from "../../wrappers/slider/Slider";
+import CategoryHome from "../../wrappers/category/CategoryHome";
 
 const Home = () => {
   return (
