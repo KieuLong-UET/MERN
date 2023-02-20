@@ -22,7 +22,7 @@ const App = (props) => {
     props.dispatch(
       loadLanguages({
         languages: {
-          vn: require("./translations/vietnamese.json")
+          vn: require("./languages/vietnamese.json")
         }
       })
     );
