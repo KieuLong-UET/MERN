@@ -22,8 +22,8 @@ const App = (props) => {
     props.dispatch(
       loadLanguages({
         languages: {
-          vn: require("./languages/vietnamese.json")
-        }
+          vn: require("./languages/vietnamese.json"),
+        },
       })
     );
   });
@@ -33,13 +33,39 @@ const App = (props) => {
       <BreadcrumbsProvider>
         <Route>
           <ScrollToTop>
-            <Home/>
+            <Suspense
+              fallback={
+                <div className="preloader-wrapper">
+                  <div className="preloader">
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+              }
+            >
+              <Switch>
+                {/* Home page */}
+                <Route
+                  exact
+                  path={process.env.PUBLIC_URL + "/"}
+                  component={Home}
+                />
+
+                {/* Shop page */}
+
+                {/* shop product page */}
+
+                {/* Blog page */}
+
+                {/* Other page */}
+              </Switch>
+            </Suspense>
           </ScrollToTop>
         </Route>
       </BreadcrumbsProvider>
     </ToastProvider>
   );
-}
+};
 
 App.propTypes = {
   dispatch: PropTypes.func,
