@@ -9,7 +9,7 @@ import NavMenu from "../../components/header/NavMenu";
 import MobileMenu from "../../components/header/MobileMenu";
 import LanguageCurrencyChanger from "../../components/header/sub-components/LanguageCurrencyChanger";
 
-const Header = ({
+const Footer = ({
   currency,
   setCurrency,
   currentLanguageCode,
@@ -87,7 +87,7 @@ const Header = ({
   );
 };
 
-Header.propTypes = {
+Footer.propTypes = {
   setCurrency: PropTypes.func,
   currency: PropTypes.object,
   currentLanguageCode: PropTypes.string,
@@ -111,4 +111,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
 //   mapDispatchToProps
-)(multilanguage(Header));
+)(multilanguage(Footer));
