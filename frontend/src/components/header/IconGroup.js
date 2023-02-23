@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import MenuCart from "./sub-components/MenuCart";
+// import MenuCart from "./sub-components/MenuCart";
 // import { deleteFromCart } from "../../redux/actions/cartActions";
 
 const IconGroup = ({
@@ -90,11 +90,11 @@ const IconGroup = ({
           </span>
         </button>
         {/* menu cart */}
-        <MenuCart
+        {/* <MenuCart
           cartData={cartData}
           currency={currency}
           // deleteFromCart={deleteFromCart}
-        />
+        /> */}
       </div>
       <div className="same-style cart-wrap d-block d-lg-none">
         <Link className="icon-cart" to={process.env.PUBLIC_URL + "/cart"}>
