@@ -3,14 +3,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import MenuCart from "./sub-components/MenuCart";
-import { deleteFromCart } from "../../redux/actions/cartActions";
+// import { deleteFromCart } from "../../redux/actions/cartActions";
 
 const IconGroup = ({
   currency,
   cartData,
   wishlistData,
   compareData,
-  deleteFromCart,
+  // deleteFromCart,
   iconWhiteClass
 }) => {
   const handleClick = e => {
@@ -93,7 +93,7 @@ const IconGroup = ({
         <MenuCart
           cartData={cartData}
           currency={currency}
-          deleteFromCart={deleteFromCart}
+          // deleteFromCart={deleteFromCart}
         />
       </div>
       <div className="same-style cart-wrap d-block d-lg-none">
@@ -121,7 +121,7 @@ IconGroup.propTypes = {
   compareData: PropTypes.array,
   currency: PropTypes.object,
   iconWhiteClass: PropTypes.string,
-  deleteFromCart: PropTypes.func,
+  // deleteFromCart: PropTypes.func,
   wishlistData: PropTypes.array
 };
 
@@ -134,12 +134,13 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    deleteFromCart: (item, addToast) => {
-      dispatch(deleteFromCart(item, addToast));
-    }
-  };
-};
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     deleteFromCart: (item, addToast) => {
+//       dispatch(deleteFromCart(item, addToast));
+//     }
+//   };
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(IconGroup);
+// export default connect(mapStateToProps, mapDispatchToProps)(IconGroup);
+export default connect(mapStateToProps)(IconGroup);
