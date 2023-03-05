@@ -1,20 +1,11 @@
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-// import { setCurrency } from "../../redux/actions/currencyActions";
 import { multilanguage } from "redux-multilanguage";
 import Logo from "../../components/header/Logo";
 import IconGroup from "../../components/header/IconGroup";
-import NavMenu from "../../components/header/NavMenu";
-import MobileMenu from "../../components/header/MobileMenu";
-import LanguageCurrencyChanger from "../../components/header/sub-components/LanguageCurrencyChanger";
 
-const Header = ({
-  currency,
-  setCurrency,
-  currentLanguageCode,
-  dispatch
-}) => {
+const Header = () => {
   const [scroll, setScroll] = useState(0);
   const [headerTop, setHeaderTop] = useState(0);
 
@@ -36,19 +27,11 @@ const Header = ({
       <div className="container">
         <div className="header-top-area d-none d-lg-block">
           <div className="row">
-            <div className="col-lg-5 col-md-8 col-12">
-              {/* language currency changer */}
-              <LanguageCurrencyChanger
-                currency={currency}
-                setCurrency={setCurrency}
-                currentLanguageCode={currentLanguageCode}
-                dispatch={dispatch}
-              />
-            </div>
+            <div className="col-lg-5 col-md-8 col-12">{/* showflag */}</div>
             <div className="col-lg-2 d-none d-lg-block text-center">
               {/* header logo */}
               <Logo
-                imageUrl="/assets/img/logo/logo.png"
+                imageUrl="logo192.png"
                 logoClass="logo-hm-9"
               />
             </div>
@@ -76,39 +59,17 @@ const Header = ({
             </div>
             <div className="col-xl-12 col-lg-12 d-none d-lg-block">
               {/* Nav menu */}
-              <NavMenu />
+              {/* <NavMenu /> */}
             </div>
           </div>
           {/* mobile menu */}
-          <MobileMenu />
+          {/* <MobileMenu /> */}
         </div>
       </div>
     </header>
   );
 };
 
-Header.propTypes = {
-  setCurrency: PropTypes.func,
-  currency: PropTypes.object,
-  currentLanguageCode: PropTypes.string,
-  dispatch: PropTypes.func
-};
+Header.propTypes = {};
 
-const mapStateToProps = state => {
-  return {
-    currency: state.currencyData
-  };
-};
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     setCurrency: currencyName => {
-//       dispatch(setCurrency(currencyName));
-//     }
-//   };
-// };
-
-export default connect(
-  mapStateToProps,
-//   mapDispatchToProps
-)(multilanguage(Header));
+export default connect()(multilanguage(Header));

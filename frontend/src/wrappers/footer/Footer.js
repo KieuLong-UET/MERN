@@ -1,114 +1,207 @@
 import PropTypes from "prop-types";
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
-// import { setCurrency } from "../../redux/actions/currencyActions";
-import { multilanguage } from "redux-multilanguage";
-import Logo from "../../components/header/Logo";
-import IconGroup from "../../components/header/IconGroup";
-import NavMenu from "../../components/header/NavMenu";
-import MobileMenu from "../../components/header/MobileMenu";
-import LanguageCurrencyChanger from "../../components/header/sub-components/LanguageCurrencyChanger";
+import { Link } from "react-router-dom";
+import { animateScroll } from "react-scroll";
 
-const Header = ({
-  currency,
-  setCurrency,
-  currentLanguageCode,
-  dispatch
+const Footer = ({
+  backgroundColorClass,
+  spaceTopClass,
+  spaceBottomClass,
+  spaceLeftClass,
+  spaceRightClass,
+  containerClass,
+  extraFooterClass,
+  sideMenu,
 }) => {
   const [scroll, setScroll] = useState(0);
-  const [headerTop, setHeaderTop] = useState(0);
+  const [top, setTop] = useState(0);
 
   useEffect(() => {
-    const header = document.querySelector(".sticky-bar");
-    setHeaderTop(header.offsetTop);
+    setTop(100);
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
+  const scrollToTop = () => {
+    animateScroll.scrollToTop();
+  };
+
   const handleScroll = () => {
     setScroll(window.scrollY);
   };
 
   return (
-    <header className="header-area clearfix header-hm9 transparent-bar">
-      <div className="container">
-        <div className="header-top-area d-none d-lg-block">
-          <div className="row">
-            <div className="col-lg-5 col-md-8 col-12">
-              {/* language currency changer */}
-              <LanguageCurrencyChanger
-                currency={currency}
-                setCurrency={setCurrency}
-                currentLanguageCode={currentLanguageCode}
-                dispatch={dispatch}
-              />
-            </div>
-            <div className="col-lg-2 d-none d-lg-block text-center">
-              {/* header logo */}
-              <Logo
-                imageUrl="/assets/img/logo/logo.png"
-                logoClass="logo-hm-9"
-              />
-            </div>
-            <div className="col-lg-5 col-md-4 col-12">
-              {/* Icon group */}
-              <IconGroup />
+    <footer
+      className={`footer-area ${
+        backgroundColorClass ? backgroundColorClass : ""
+      } ${spaceTopClass ? spaceTopClass : ""} ${
+        spaceBottomClass ? spaceBottomClass : ""
+      } ${extraFooterClass ? extraFooterClass : ""} ${
+        spaceLeftClass ? spaceLeftClass : ""
+      } ${spaceRightClass ? spaceRightClass : ""}`}
+    >
+      <div className={`${containerClass ? containerClass : "container"}`}>
+        <div className="row">
+          <div
+            className={`${
+              sideMenu ? "col-xl-2 col-sm-4" : "col-lg-2 col-sm-4"
+            }`}
+          >
+            {/* footer copyright */}
+          </div>
+          <div
+            className={`${
+              sideMenu ? "col-xl-2 col-sm-4" : "col-lg-2 col-sm-4"
+            }`}
+          >
+            <div className="footer-widget mb-30 ml-30">
+              <div className="footer-title">
+                <h3>ABOUT US</h3>
+              </div>
+              <div className="footer-list">
+                <ul>
+                  <li>
+                    <Link to={process.env.PUBLIC_URL + "/about"}>About us</Link>
+                  </li>
+                  <li>
+                    <Link to={process.env.PUBLIC_URL + "#/"}>
+                      Store location
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={process.env.PUBLIC_URL + "/contact"}>
+                      Contact
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={process.env.PUBLIC_URL + "#/"}>
+                      Orders tracking
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
+          <div
+            className={`${
+              sideMenu ? "col-xl-2 col-sm-4" : "col-lg-2 col-sm-4"
+            }`}
+          >
+            <div
+              className={`${
+                sideMenu
+                  ? "footer-widget mb-30 ml-95"
+                  : "footer-widget mb-30 ml-50"
+              }`}
+            >
+              <div className="footer-title">
+                <h3>USEFUL LINKS</h3>
+              </div>
+              <div className="footer-list">
+                <ul>
+                  <li>
+                    <Link to={process.env.PUBLIC_URL + "#/"}>Returns</Link>
+                  </li>
+                  <li>
+                    <Link to={process.env.PUBLIC_URL + "#/"}>
+                      Support Policy
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={process.env.PUBLIC_URL + "#/"}>Size guide</Link>
+                  </li>
+                  <li>
+                    <Link to={process.env.PUBLIC_URL + "#/"}>FAQs</Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div
+            className={`${
+              sideMenu ? "col-xl-3 col-sm-4" : "col-lg-2 col-sm-6"
+            }`}
+          >
+            <div
+              className={`${
+                sideMenu
+                  ? "footer-widget mb-30 ml-145"
+                  : "footer-widget mb-30 ml-75"
+              }`}
+            >
+              <div className="footer-title">
+                <h3>FOLLOW US</h3>
+              </div>
+              <div className="footer-list">
+                <ul>
+                  <li>
+                    <a
+                      href="//www.facebook.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Facebook
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="//www.twitter.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Twitter
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="//www.instagram.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Instagram
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="//www.youtube.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Youtube
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div
+            className={`${
+              sideMenu ? "col-xl-3 col-sm-8" : "col-lg-4 col-sm-6"
+            }`}
+          ></div>
         </div>
       </div>
-      <div
-        className={`header-bottom sticky-bar header-res-padding header-padding-2 ${
-          scroll > headerTop ? "stick" : ""
-        }`}
+      <button
+        className={`scroll-top ${scroll > top ? "show" : ""}`}
+        onClick={() => scrollToTop()}
       >
-        <div className="container">
-          <div className="row">
-            <div className="col-6 d-block d-lg-none">
-              {/* header logo */}
-              <Logo imageUrl="/assets/img/logo/logo.png" />
-            </div>
-            <div className="col-6 d-block d-lg-none">
-              {/* Icon group */}
-              <IconGroup />
-            </div>
-            <div className="col-xl-12 col-lg-12 d-none d-lg-block">
-              {/* Nav menu */}
-              <NavMenu />
-            </div>
-          </div>
-          {/* mobile menu */}
-          <MobileMenu />
-        </div>
-      </div>
-    </header>
+        <i className="fa fa-angle-double-up"></i>
+      </button>
+    </footer>
   );
 };
 
-Header.propTypes = {
-  setCurrency: PropTypes.func,
-  currency: PropTypes.object,
-  currentLanguageCode: PropTypes.string,
-  dispatch: PropTypes.func
+Footer.propTypes = {
+  backgroundColorClass: PropTypes.string,
+  containerClass: PropTypes.string,
+  extraFooterClass: PropTypes.string,
+  sideMenu: PropTypes.bool,
+  spaceBottomClass: PropTypes.string,
+  spaceTopClass: PropTypes.string,
+  spaceLeftClass: PropTypes.string,
+  spaceRightClass: PropTypes.string,
 };
 
-const mapStateToProps = state => {
-  return {
-    currency: state.currencyData
-  };
-};
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     setCurrency: currencyName => {
-//       dispatch(setCurrency(currencyName));
-//     }
-//   };
-// };
-
-export default connect(
-  mapStateToProps,
-//   mapDispatchToProps
-)(multilanguage(Header));
+export default Footer;
