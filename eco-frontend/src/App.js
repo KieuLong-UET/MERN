@@ -1,7 +1,7 @@
-import React, {lazy} from 'react';
+import React from 'react';
 
 // home pages
-const HomeMain = lazy(() => import("./pages/home/HomeMain"));
+import HomeMain from "./pages/home/HomeMain";
 
 
 const App = () => {
