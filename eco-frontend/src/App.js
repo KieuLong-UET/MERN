@@ -1,10 +1,12 @@
-import './App.css';
+import React, {lazy} from 'react';
 
-function App() {
+// home pages
+const HomeMain = lazy(() => import("./pages/home/HomeMain"));
+
+
+const App = () => {
   return (
-    <div className="App">
-      <h1>Hello I'm LongK</h1>
-    </div>
+    <HomeMain></HomeMain>
   );
 }
 
