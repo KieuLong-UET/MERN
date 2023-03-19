@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import MetaTags from "react-meta-tags";
+import HeaderMain from "../../wrapers/header/HeaderMain";
 
 const HomeMain = () => {
   return (
@@ -11,7 +12,7 @@ const HomeMain = () => {
           content="Web ban hang dien tu"
         />
       </MetaTags>
-      <h1>LongK ne`</h1>
+      <HeaderMain />
     </Fragment>
   );
 };

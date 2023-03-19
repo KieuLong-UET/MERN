@@ -1,13 +1,15 @@
-import React from 'react';
+import { BrowserRouter as Router} from "react-router-dom";
+import React from "react";
 
 // home pages
 import HomeMain from "./pages/home/HomeMain";
 
-
 const App = () => {
   return (
-    <HomeMain></HomeMain>
+    <Router>
+      <HomeMain></HomeMain>
+    </Router>
   );
-}
+};
 
 export default App;

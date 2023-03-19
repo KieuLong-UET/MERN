@@ -42,9 +42,6 @@ const IconGroup = () => {
       <div className="same-style header-wishlist">
         <Link to={process.env.PUBLIC_URL + "/wishlist"}>
           <i className="pe-7s-like" />
-          <span className="count-style">
-            {wishlistData && wishlistData.length ? wishlistData.length : 0}
-          </span>
         </Link>
       </div>
       <div className="same-style cart-wrap d-none d-lg-block">
