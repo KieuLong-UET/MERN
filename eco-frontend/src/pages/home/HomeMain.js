@@ -1,22 +1,19 @@
 import React, { Fragment } from "react";
 import MetaTags from "react-meta-tags";
-import HeaderMain from "../../wrapers/header/HeaderMain";
 import LayoutMain from "../../layouts/LayoutMain";
+import Slider from "../../wrapers/slider/Slider";
 
 const HomeMain = () => {
   return (
     <Fragment>
       <MetaTags>
         <title>Eco | Home</title>
-        <meta
-          name="description"
-          content="Web ban hang dien tu"
-        />
+        <meta name="description" content="Web ban hang dien tu" />
       </MetaTags>
       <LayoutMain>
-        
+        {/* slider */}
+        <Slider />
       </LayoutMain>
-      <HeaderMain />
     </Fragment>
   );
 };
