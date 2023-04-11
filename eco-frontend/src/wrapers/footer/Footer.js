@@ -35,6 +35,9 @@ const Footer = ({}) => {
               footerLogo="/assets/img/logo/logo.png"
               spaceBottomClass="mb-30"
             /> */}
+            <div>
+              <span>About us</span>
+            </div>
           </div>
           <div className="col-lg-2 col-sm-4">
             <div className="footer-widget mb-30 ml-30">
@@ -90,18 +93,8 @@ const Footer = ({}) => {
               </div>
             </div>
           </div>
-          <div
-            className={`${
-              sideMenu ? "col-xl-3 col-sm-4" : "col-lg-2 col-sm-6"
-            }`}
-          >
-            <div
-              className={`${
-                sideMenu
-                  ? "footer-widget mb-30 ml-145"
-                  : "footer-widget mb-30 ml-75"
-              }`}
-            >
+          <div className="col-lg-2 col-sm-6">
+            <div className="footer-widget mb-30 ml-75">
               <div className="footer-title">
                 <h3>FOLLOW US</h3>
               </div>
@@ -147,17 +140,16 @@ const Footer = ({}) => {
               </div>
             </div>
           </div>
-          <div
-            className={`${
-              sideMenu ? "col-xl-3 col-sm-8" : "col-lg-4 col-sm-6"
-            }`}
-          >
+          <div className="col-lg-4 col-sm-6">
             {/* footer newsletter */}
-            <FooterNewsletter
+            {/* <FooterNewsletter
               spaceBottomClass="mb-30"
               spaceLeftClass="ml-70"
               sideMenu={sideMenu}
-            />
+            /> */}
+            <div>
+              <span>Email subcription</span>
+            </div>
           </div>
         </div>
       </div>
