@@ -5,7 +5,7 @@ import sliderData from "./sliderData.json"
 
 const Slider = () => {
   const params = {
-    effect: "fade",
+    // effect: "fade",
     loop: true,
     speed: 1000,
     autoplay: {

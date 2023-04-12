@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import MetaTags from "react-meta-tags";
 import LayoutMain from "../../layouts/LayoutMain";
 import Slider from "../../wrapers/slider/Slider";
+import Category from "../../wrapers/category/Category";
 
 const HomeMain = () => {
   return (
@@ -13,6 +14,9 @@ const HomeMain = () => {
       <LayoutMain>
         {/* slider */}
         <Slider />
+        {/* category */}
+        <Category spaceBottomClass="pb-95" />
+
       </LayoutMain>
     </Fragment>
   );
