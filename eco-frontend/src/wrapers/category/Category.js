@@ -7,7 +7,7 @@ import CategoryComponent from "../../components/category/CategoryComponent";
 const Category = ({ spaceBottomClass }) => {
   // swiper slider settings
   const settings = {
-    loop: false,
+    loop: true,
     spaceBetween: 30,
     breakpoints: {
       992: {

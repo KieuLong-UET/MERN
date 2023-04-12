@@ -17,6 +17,9 @@ const HomeMain = () => {
         {/* category */}
         <Category spaceBottomClass="pb-95" />
 
+        {/* tab product */}
+        <TabProduct spaceBottomClass="pb-60" category="electronics" />
+
       </LayoutMain>
     </Fragment>
   );
