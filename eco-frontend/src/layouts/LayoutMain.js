@@ -1,14 +1,14 @@
 import PropTypes from "prop-types";
 import React, { Fragment } from "react";
-import HeaderOne from "../wrappers/header/HeaderOne";
-import FooterOne from "../wrappers/footer/FooterOne";
+import HeaderMain from "../wrappers/header/HeaderMain";
+import Footer from "../wrappers/footer/Footer";
 
 const LayoutMain = ({ children }) => {
   return (
     <Fragment>
-      <HeaderOne/>
+      <HeaderMain/>
       {children}
-      <FooterOne
+      <Footer
         backgroundColorClass="bg-gray"
         spaceTopClass="pt-100"
         spaceBottomClass="pb-70"
