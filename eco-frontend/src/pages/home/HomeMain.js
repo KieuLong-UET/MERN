@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import MetaTags from "react-meta-tags";
-import LayoutMain from "../../layouts/LayoutMain";
+import LayoutHome from "../../layouts/LayoutHome";
 import Slider from "../../wrapers/slider/Slider";
 import Category from "../../wrapers/category/Category";
 // import TabProduct from "../../wrapers/product/TabProduct";
@@ -13,7 +13,7 @@ const HomeMain = () => {
         <title>Eco | Home</title>
         <meta name="description" content="Web ban hang dien tu" />
       </MetaTags>
-      <LayoutMain>
+      <LayoutHome>
         {/* slider */}
         <Slider />
         {/* category */}
@@ -25,7 +25,7 @@ const HomeMain = () => {
         {/* logo brand */}
         <LogoBrandSlider spaceBottomClass="pb-95" spaceTopClass="pt-100" />
 
-      </LayoutMain>
+      </LayoutHome>
     </Fragment>
   );
 };
